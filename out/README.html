@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&Ucy;&chcy;&iecy;&bcy;&ncy;&ycy;&jcy; Telegram-&bcy;&ocy;&tcy; &ncy;&acy; Python &lpar;aiogram v3&rpar;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="учебный-telegram-бот-на-python-aiogram-v3">Учебный Telegram-бот на Python (aiogram v3)</h1>
+<p>Стартовый проект под идею «Платформа для рефлексии и самопомощи», заточен под защиту: демонстрация <strong>класс/объект, состояние, поведение, индивидуальность</strong> + диаграммы Use‑Case/Activity/Class/Component.</p>
+<h2 id="структура-проекта">Структура проекта</h2>
+<pre><code>.
+├─ .env.example
+├─ requirements.txt
+├─ app/
+│  ├─ __init__.py
+│  ├─ main.py
+│  ├─ config.py
+│  ├─ keyboards.py
+│  ├─ states.py
+│  ├─ db.py
+│  ├─ models.py
+│  └─ handlers/
+│     ├─ __init__.py
+│     ├─ common.py
+│     └─ reflection.py
+└─ data/ (создастся автоматически)
+</code></pre>
+<h2 id="установка-и-запуск">Установка и запуск</h2>
+<ol>
+<li>Создайте виртуальное окружение:</li>
+</ol>
+<pre><code class="language-bash">python -m venv .venv
+<span class="hljs-built_in">source</span> .venv/bin/activate  <span class="hljs-comment"># Windows: .venv\Scripts\activate</span>
+</code></pre>
+<ol start="2">
+<li>Установите зависимости:</li>
+</ol>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<ol start="3">
+<li>Настройте переменные окружения:</li>
+</ol>
+<pre><code class="language-bash"><span class="hljs-built_in">cp</span> .env.example .<span class="hljs-built_in">env</span>
+<span class="hljs-comment"># Отредактируйте .env и вставьте ваш BOT_TOKEN</span>
+</code></pre>
+<ol start="4">
+<li>Запустите бота:</li>
+</ol>
+<pre><code class="language-bash">python -m app.main
+</code></pre>
+<h2 id="функциональность">Функциональность</h2>
+<ul>
+<li><strong>Рефлексия</strong>: пользователь может оставлять записи с оценкой настроения (1-5) и описанием</li>
+<li><strong>Статистика</strong>: просмотр количества записей и среднего настроения</li>
+<li><strong>Экспорт</strong>: выгрузка всех записей в CSV формате</li>
+<li><strong>Теги</strong>: возможность добавлять теги к записям</li>
+</ul>
+<h2 id="команды-бота">Команды бота</h2>
+<ul>
+<li><code>/start</code> — начать работу с ботом</li>
+<li><code>/help</code> — помощь</li>
+<li><code>/about</code> — о проекте</li>
+</ul>
+<h2 id="мини-модель-предмета-для-объяснения-ооп">Мини-модель предмета (для объяснения ООП)</h2>
+<ul>
+<li><strong>Классы</strong>: <code>User</code>, <code>Reflection</code>, <code>JournalService</code> (поведение: добавить/список/статистика), <code>ExportService</code></li>
+<li><strong>Состояние</strong>: <code>Reflection.mood 1..5</code>, <code>Reflection.tags: str</code>, <code>JournalService.db_path</code></li>
+<li><strong>Поведение</strong>: методы сервисов (создать запись, посчитать среднее, выгрузить CSV)</li>
+<li><strong>Индивидуальность</strong>: уникальный <code>User.id</code></li>
+</ul>
+<h2 id="что-показать-на-защите">Что показать на защите</h2>
+<ol>
+<li>Use‑Case: «Пользователь оставляет рефлексию и смотрит статистику»</li>
+<li>Activity: шаги мастера (настроение → текст → теги → запись)</li>
+<li>Class: <code>User</code>, <code>Reflection</code>, <code>JournalService</code>, <code>ExportService</code></li>
+<li>Component: Telegram Bot ↔ DB (SQLite)</li>
+<li>Демо: /start → «📝 Новая рефлексия» → «📊 Мои показатели» → «📦 Экспорт записей»</li>
+</ol>
+
+            
+            
+        </body>
+        </html>
